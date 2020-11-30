@@ -1,5 +1,6 @@
 <?php
 
+/*
 
 $occupation = $_POST['occupation'];
 $field = $_POST['field'];
@@ -31,4 +32,6 @@ else{
     $stmt->close();
     $conn->close();
 }
+
+*/
 ?>
