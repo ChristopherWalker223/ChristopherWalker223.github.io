@@ -18,7 +18,7 @@ if($conn->connect_error){
 }
 
 else{
-    $stmt = $conn->prepare("insert into audio_survey_data_table(occupation, field, whySelect, whyNotSelect, additionalComments, forestValueBox, cityValueBox, noiseValueBox, oceanValueBox, rainValueBox, officeValueBox) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("insert into Survey_Data(occupation, field, whySelect, whyNotSelect, additionalComments, forestValueBox, cityValueBox, noiseValueBox, oceanValueBox, rainValueBox, officeValueBox) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     
     $stmt->bind_param("sssssiiiiii", $occupation, $field, $whySelect, $whyNotSelect, $additionalComments, $forestValueBox, $cityValueBox, $noiseValueBox, $oceanValueBox, $rainValueBox, $officeValueBox);
     
