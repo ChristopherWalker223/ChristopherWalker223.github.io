@@ -11,7 +11,7 @@ $oceanValueBox = $_POST['oceanValueBox'];
 $rainValueBox = $_POST['rainValueBox'];
 $officeValueBox = $_POST['officeValueBox'];
 
-$conn = new mysqli('localhost','root','','audio_survey_data');
+$conn = new mysqli('cjwthesis-db.miserver.it.umich.edu','cjw_thesis_survey','','cjw_thesis_survey');
 
 if($conn->connect_error){
     die('Connection Failed : '.$conn->connect_error);
