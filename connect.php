@@ -11,7 +11,7 @@ $oceanValueBox = $_POST['oceanValueBox'];
 $rainValueBox = $_POST['rainValueBox'];
 $officeValueBox = $_POST['officeValueBox'];
 
-$conn = mysqli_connect('cjwthesis-db.miserver.it.umich.edu','cjw_thesis_survey','OBqEK4vSTM!','cjw_thesis_survey');
+$conn = new mysqli('cjwthesis-db.miserver.it.umich.edu','cjw_thesis_survey','OBqEK4vSTM!','cjw_thesis_survey');
 
 if($conn->connect_error){
     die('Connection Failed : '.$conn->connect_error);
