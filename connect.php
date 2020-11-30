@@ -1,8 +1,6 @@
 <?php
 
 
-
-/*
 $occupation = $_POST['occupation'];
 $field = $_POST['field'];
 $whySelect = $_POST['whySelect'];
@@ -31,6 +29,4 @@ else{
     $stmt->close();
     $conn->close();
 }
-*/
-
 ?>
