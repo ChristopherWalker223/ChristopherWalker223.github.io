@@ -1,4 +1,7 @@
 <?php
+
+$conn = new mysqli('cjwthesis-db.miserver.it.umich.edu','cjw_thesis_survey','OBqEK4vSTM!','cjw_thesis_survey');
+
 /*
 $occupation = $_POST['occupation'];
 $field = $_POST['field'];
