@@ -17,11 +17,11 @@
 function VolumeSampleOffice() {
   loadSounds(this, {
     buffer: 'office.wav'
-  }, onLoaded);
+  });
   function onLoaded() {
     var button = document.querySelector('button');
     button.removeAttribute('disabled');
-    button.innerHTML = 'Play/pause';
+    button.innerHTML = 'Play';
   };
   this.isPlaying = false;
 };

@@ -3,9 +3,10 @@
 <head>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
-<title>Audio Survey | Christopher Walker</title>
+<title>Audio Environment Survey | Christopher Walker</title>
 
 <link rel="stylesheet" href="https://webaudioapi.com/static/style.css" type="text/css" media="screen" />
+
 </head>
 
 <body>
@@ -18,9 +19,10 @@
       
 <div class="post">
   <h1>Audio Environment Survey</h1>
-    
+
+
   <p>
-    This survey is intended to explore what kinds of sounds foster wellbeing and productivity. Please press "play" and have this survey playing in the background as you work. Adjust the levels of the different sounds to find the mix that you find most pleasant and helpful to your work.
+    Please have this survey playing in the background as you work. Sound sliders start all the way down. Adjust the levels of the different sounds to find the mix that you find most pleasant and helpful to your work.
       
     </p>
     <p>
@@ -31,9 +33,32 @@
       
       <script src="audioMaster.js"></script>
       
-    <p><button style="display: block" disabled="true" onclick="forestSample.toggle();citySample.toggle();noiseSample.toggle();oceanSample.toggle();rainSample.toggle();officeSample.toggle();" >Please wait, loading...</button></p>
+    <p><button style="display: block" disabled="true" onclick="forestSample.toggle();forestSample.changeVolume(document.getElementById('forestSlider'));
+								citySample.toggle();citySample.changeVolume(document.getElementById('citySlider'));
+								noiseSample.toggle();noiseSample.changeVolume(document.getElementById('noiseSlider'));
+								oceanSample.toggle();oceanSample.changeVolume(document.getElementById('oceanSlider'));
+								rainSample.toggle();rainSample.changeVolume(document.getElementById('rainSlider'));
+								officeSample.toggle();officeSample.changeVolume(document.getElementById('officeSlider'));
+								toggleButtonText(this);">Please wait, loading...</button>
+</p>
 
-<p><input type="range" min="0" max="100" id= "forestSlider" name="forestSlider" value="100" oninput="forestSample.changeVolume(this);forestValueBox.value = forestSlider.value"> Forest Volume
+<script type="text/javascript" >
+
+function toggleButtonText(element) {
+if (element.innerHTML != 'Pause') {
+
+element.innerHTML = 'Pause'; }
+
+else {
+
+element.innerHTML = 'Play'; }
+}
+
+</script>
+
+
+
+<p><input type="range" min="0" max="100" id= "forestSlider" name="forestSlider" value="0" oninput="forestSample.changeVolume(this);postForestValue();"> Forest Volume
         
     </p>    
 
@@ -45,7 +70,7 @@ var forestSample = new VolumeSampleForest();
 
     
     
-<p><input type="range" min="0" max="100" id= "oceanSlider" name="oceanSlider" value="100" oninput="oceanSample.changeVolume(this);oceanValueBox.value = oceanSlider.value"> Ocean Volume
+<p><input type="range" min="0" max="100" id= "oceanSlider" name="oceanSlider" value="0" oninput="oceanSample.changeVolume(this);postOceanValue();"> Ocean Volume
         
     </p>
 
@@ -55,7 +80,7 @@ var oceanSample = new VolumeSampleOcean();
 </script>
     
 
-<p><input type="range" min="0" max="100" id= "rainSlider" name="rainSlider" value="100" oninput="rainSample.changeVolume(this);rainValueBox.value = rainSlider.value"> Rain Volume
+<p><input type="range" min="0" max="100" id= "rainSlider" name="rainSlider" value="0" oninput="rainSample.changeVolume(this);postRainValue();"> Rain Volume
         
     </p>
 
@@ -65,8 +90,19 @@ var rainSample = new VolumeSampleRain();
 </script>
 
     
+    
+    <p><input type="range" min="0" max="100" id="citySlider" name="citySlider" value="0" oninput="citySample.changeVolume(this);postCityValue();"> City Volume</p>
 
-<p><input type="range" min="0" max="100" id= "officeSlider" name="officeSlider" value="100" oninput="officeSample.changeVolume(this);officeValueBox.value = officeSlider.value"> Office Volume
+
+<script src="volume-sample-city.js"></script>
+<script>
+var citySample = new VolumeSampleCity();
+</script>
+
+
+
+
+<p><input type="range" min="0" max="100" id= "officeSlider" name="officeSlider" value="0" oninput="officeSample.changeVolume(this);postOfficeValue();"> Office Volume
         
     </p>
 
@@ -75,19 +111,11 @@ var rainSample = new VolumeSampleRain();
 var officeSample = new VolumeSampleOffice();
 </script>
     
-    
-    <p><input type="range" min="0" max="100" id="citySlider" name="citySlider" value="100" oninput="citySample.changeVolume(this);cityValueBox.value = citySlider.value"> City Volume</p>
 
 
-<script src="volume-sample-city.js"></script>
-<script>
-var citySample = new VolumeSampleCity();
-</script>
-    
-    
     
 
-<p><input type="range" min="0" max="100" id= "noiseSlider" name="noiseSlider" value="100" oninput="noiseSample.changeVolume(this);noiseValueBox.value = noiseSlider.value"> Noise Volume
+<p><input type="range" min="0" max="100" id= "noiseSlider" name="noiseSlider" value="0" oninput="noiseSample.changeVolume(this);postNoiseValue();"> Noise Volume
         
     </p>
 
@@ -95,25 +123,95 @@ var citySample = new VolumeSampleCity();
         <script>
 var noiseSample = new VolumeSampleNoise();
 </script>
-    
+
+
+
+<script type="text/javascript" >
+
+function postOfficeValue() {
+
+document.getElementById("officeValueBox").value = document.getElementById("officeSlider").value;
+}
+
+</script>
+
+
+<script type="text/javascript" >
+
+function postForestValue() {
+
+document.getElementById("forestValueBox").value = document.getElementById("forestSlider").value;
+}
+
+</script>
+
+
+<script type="text/javascript" >
+
+function postCityValue() {
+
+document.getElementById("cityValueBox").value = document.getElementById("citySlider").value;
+}
+
+</script>
+
+
+<script type="text/javascript" >
+
+function postNoiseValue() {
+
+document.getElementById("noiseValueBox").value = document.getElementById("noiseSlider").value;
+}
+
+</script>
+
+
+<script type="text/javascript" >
+
+function postOceanValue() {
+
+document.getElementById("oceanValueBox").value = document.getElementById("oceanSlider").value;
+}
+
+</script>
+
+
+<script type="text/javascript" >
+
+function postRainValue() {
+
+document.getElementById("rainValueBox").value = document.getElementById("rainSlider").value;
+}
+
+</script>
+
+
     
     <form action="connect.php" method="post">
   <label for="occupation">Occupation:</label><br>
-  <input type="text" id="occupation" name="occupation"><br>
-  <label for="field">Field:</label><br>
-  <input type="text" id="field" name="field"><br>
+  <textarea style="font-size: 14pt" id="occupation" name="occupation" rows=1, cols=25></textarea><br>
+	<br>
+  <label for="field">Field/Industry:</label><br>
+  <textarea style="font-size: 14pt" id="field" name="field" rows=1, cols=25></textarea><br>
+	<br>
   <label for="field">Of the sounds you prioritized in your mix, what qualities did you find beneficial to your work? :</label><br>
-  <input type="text" id="whySelect" name="whySelect"><br>
+  <textarea style="font-size: 14pt" id="whySelect" name="whySelect" rows=4 cols=50></textarea><br>
+	<br>
   <label for="field">What qualities caused you to exclude or deprioritize certain sounds? :</label><br>
-  <input type="text" id="whyNotSelect" name="whyNotSelect"><br>
+  <textarea style="font-size: 14pt" id="whyNotSelect" name="whyNotSelect" rows=4 cols=50></textarea><br>
+	<br>
   <label for="field">Additional Comments :</label><br>
-  <input type="text" id="additionalComments" name="additionalComments"><br>
-  <input id="forestValueBox" name= "forestValueBox" type="hidden">
-  <input id="cityValueBox" name= "cityValueBox" type="hidden">
-  <input id="noiseValueBox" name= "noiseValueBox" type="hidden">
+  <textarea style="font-size: 14pt" id="additionalComments" name="additionalComments" rows=4 cols=50></textarea><br>
+  <input type="hidden" id="forestValueBox" name="forestValueBox">
+  <input type="hidden" id="cityValueBox" name="cityValueBox">
+  <input id="noiseValueBox" name="noiseValueBox" type="hidden">
   <input id="oceanValueBox" name= "oceanValueBox" type="hidden">
   <input id="rainValueBox" name= "rainValueBox" type="hidden">
   <input id="officeValueBox" name= "officeValueBox" type="hidden"><br>
+
+  <label for="minutesSpentBox">Approximate time spent listening (minutes):</label><br>
+  <textarea style="font-size: 14pt" id="minutesSpentBox" name="minutesSpentBox" rows=1, cols=25></textarea><br>
+	<br>
    <input type="submit" value="Submit">
             </form>
         </div>
@@ -126,19 +224,7 @@ var noiseSample = new VolumeSampleNoise();
 
   </div>
 
-<script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-17930798-28']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
 
 
   </body>

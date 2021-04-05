@@ -21,10 +21,11 @@ function VolumeSampleNoise() {
   function onLoaded() {
     var button = document.querySelector('button');
     button.removeAttribute('disabled');
-    button.innerHTML = 'Play/pause';
+    button.innerHTML = 'Play';
   };
   this.isPlaying = false;
 };
+
 
 VolumeSampleNoise.prototype.play = function() {
   this.gainNode = context.createGain();

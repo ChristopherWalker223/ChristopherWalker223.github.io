@@ -8,6 +8,9 @@ if (!context.createDelay)
 if (!context.createScriptProcessor)
   context.createScriptProcessor = context.createJavaScriptNode;
 
+if(context.state == "suspended")
+	context.resume();
+
 // shim layer with setTimeout fallback
 window.requestAnimFrame = (function(){
 return  window.requestAnimationFrame       || 
